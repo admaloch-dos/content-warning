@@ -1,0 +1,63 @@
+.content-warning-container {
+    position: relative;
+    display: inline-block;
+    /* Makes the container fit the image size */
+    overflow: hidden;
+    /* Prevents overflow if needed */
+    /* border: black solid 5px; */
+}
+
+
+.sensitive-content-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+}
+
+.content-warning-container img {
+    filter: blur(1.5rem);
+}
+
+.content-warning-label {
+    background-color: rgb(46, 35, 35);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-warning-label p {
+    margin: 0;
+}
+
+.content-warning-btns {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+
+
+.show-once {}
+
+.show-always {}
+
+.show-never {}
+
+
+
+
+
+
+
+
+.image-style {
+    width: auto;
+    max-width: 300px;
+}
