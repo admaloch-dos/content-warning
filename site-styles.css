@@ -7,9 +7,11 @@
     position: relative;
     display: inline-block;
     /* Makes the container fit the image size */
-    overflow: hidden;
+    /* border: black solid 3px; */
+
     /* Prevents overflow if needed */
     /* border: black solid 3px; */
+    margin-bottom: 2rem;
 }
 
 .content-warning-container p {
@@ -18,7 +20,8 @@
 }
 
 
-.graphic-content-container {
+.graphic-content-btns,
+.enable-content-warning-btns {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -57,7 +60,11 @@
 }
 
 .content-warning-btns button {
-    height: 40px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 
@@ -71,10 +78,7 @@
     width: 100%;
 }
 
-.view-label,
-.show-once-btn {
-    border-bottom: white solid 1px;
-}
+
 
 .return-to-prev button {
     display: flex;
@@ -82,111 +86,6 @@
     align-items: center;
     flex-direction: row;
 }
-
-@media screen and (min-width: 500px) {
-    .content-warning-btns {
-        flex-direction: row;
-    }
-
-    .content-warning-container p {
-        margin: .5rem 0;
-    }
-
-    .view-settings {
-        width: 70%;
-    }
-
-    .return-to-prev {
-        width: 30%;
-        border-right: white solid 1px;
-        border-bottom: white solid 0px;
-    }
-
-    .return-to-prev button {
-        flex-direction: column;
-        height: 80px;
-    }
-
-}
-
-
-
-
-
-
-
-/* .return-to-prev button {
-    height: 100%;
-} */
-
-.view-label {
-    background-color: #334454;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: .3rem 0;
-}
-
-.view-label i {
-    font-size: 25px;
-    margin-left: .3rem;
-}
-
-/* .show-settings-icon-container {
-    background-color: black;
-    width: 25px;
-    height: 25px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
-
-.show-settings-icon {
-    /* color: white; */
-
-    font-size: 20px;
-    position: absolute;
-    bottom: .5rem;
-    right: .5rem;
-    cursor: pointer;
-    transition: .15s ease-in-out opacity;
-}
-
-.show-settings-icon:hover {
-    opacity: .6;
-}
-
-.show-content-btn {
-    color: white;
-    transition: .1s ease-in-out opacity;
-
-}
-
-.show-content-btn:hover {
-    opacity: .8;
-    color: white;
-}
-
-.return-page-btn {
-    background-color: #663322;
-}
-
-.show-once-btn {
-    background-color: #557766;
-}
-
-.show-always-btn {
-    background-color: #334454;
-}
-
-
-
-
-
-
-
 
 .image-style {
     width: 100%;
@@ -214,5 +113,115 @@
     bottom: 2rem;
     border-radius: 5px;
     padding: 1rem;
-    font-size: 1.8rem;
+    font-size: 1.2rem;
+}
+
+@media screen and (min-width: 768px) {
+    .graphic-content-text h4 {
+        font-size: 1.8rem;
+    }
+}
+
+.return-page-btn p {
+    margin: 0 .2rem;
+}
+
+.view-btns i {
+    margin: 0 .2rem;
+}
+
+@media screen and (min-width: 500px) {
+    .content-warning-btns {
+        flex-direction: row;
+    }
+
+    .content-warning-btns button {
+        height: 42px;
+
+    }
+
+    .content-warning-container p {
+        margin: .5rem 0;
+    }
+
+    .return-page-btn p {
+        margin: .2rem 0;
+    }
+
+    .view-settings {
+        width: 70%;
+    }
+
+
+
+    .return-to-prev {
+        width: 30%;
+        border-right: white solid 1px;
+        border-bottom: white solid 0px;
+    }
+
+    .return-to-prev button {
+        flex-direction: column;
+        height: 84px;
+    }
+
+}
+
+.content-warning-container button {
+    color: white;
+    transition: .15s ease-in-out opacity;
+}
+
+.content-warning-container button:hover {
+    color: white;
+    opacity: .9;
+}
+
+
+
+.show-settings-icon {
+    /* color: white; */
+
+    font-size: 20px;
+    position: absolute;
+    bottom: -1.5rem;
+    right: 0rem;
+    cursor: pointer;
+    transition: .15s ease-in-out opacity;
+}
+
+.show-settings-icon:hover {
+    opacity: .6;
+}
+
+
+.return-page-btn {
+    background-color: #663322;
+}
+
+.show-once-btn {
+    background-color: #557766;
+}
+
+.disable-content-warnings-btn {
+    background-color: #334454;
+}
+
+.enable-content-warning-btn {
+    background-color: #334454;
+}
+
+.cookie-settings-icon {
+   position: absolute;
+   right: .5rem;
+}
+
+.custom-btn {
+    background-color: black;
+    border: white solid 2px;
+    transition: .15s ease-in-out all;
+}
+.custom-btn:hover {
+    filter: invert(100%);
+    transition: .15s ease-in-out all;
 }
