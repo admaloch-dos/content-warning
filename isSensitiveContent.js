@@ -1,6 +1,10 @@
 const sensitiveImages = document.querySelectorAll('.content-warning-img')
 
+const previousPageUrl = document.referrer;
+const currPageUrl = window.location.href
 
+console.log('prev page:',previousPageUrl)
+console.log('curr page:',currPageUrl)
 
 if (sensitiveImages) {
     const isRemoveContentCookie = getCookie('isRemoveContentWarning');
@@ -16,8 +20,7 @@ if (sensitiveImages) {
     });
 
     sensitiveImages.forEach(image => {
-        const previousPageUrl = document.referrer;
-        const currPageUrl = window.location.href
+
         const isPrevPage = previousPageUrl && previousPageUrl !== currPageUrl
         const divContainer = document.createElement('div');
         divContainer.classList.add('content-warning-container')
@@ -28,29 +31,29 @@ if (sensitiveImages) {
         sensitiveContentContainer.classList.add('sensitive-content-container')
         sensitiveContentContainer.innerHTML = `
         <div class="content-warning-btns ${isRemoveContentCookie ? 'd-none' : 'd-flex'}">
-        <div class="return-to-prev flex-fill">
-            <button onclick="handleImgSettingsClick(event)"
-                class="btn w-100 rounded-0 show-content-btn return-page-btn">
-                <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                <p>Return to ${isPrevPage ? 'previous page' : 'home page'}</p>
-            </button>
-        </div>
-        <div class="view-settings flex-fill">
-            <div class="view-label ">
-                    Show Image:<i class="fa fa-eye"></i>
-            </div>
-            <div class="view-btns">
+            <div class="return-to-prev flex-fill">
                 <button onclick="handleImgSettingsClick(event)"
-                    class="btn w-100  rounded-0 show-content-btn show-once-btn">
-                    Once
-                </button>
-                <button onclick="handleImgSettingsClick(event)"
-                    class="btn w-100  rounded-0 show-content-btn show-always-btn">
-                    Always
+                    class="btn w-100 rounded-0 show-content-btn return-page-btn">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    <p>Return to ${isPrevPage ? 'previous page' : 'home page'}</p>
                 </button>
             </div>
+            <div class="view-settings flex-fill">
+                <div class="view-label ">
+                        Show Image:<i class="fa fa-eye"></i>
+                </div>
+                <div class="view-btns">
+                    <button onclick="handleImgSettingsClick(event)"
+                        class="btn w-100  rounded-0 show-content-btn show-once-btn">
+                        Once
+                    </button>
+                    <button onclick="handleImgSettingsClick(event)"
+                        class="btn w-100  rounded-0 show-content-btn show-always-btn">
+                        Always
+                    </button>
+                </div>
+            </div>
         </div>
-    </div>
 
 
         <i onclick="showImageSettings(event)" class="fa fa-cog show-settings-icon ${isRemoveContentCookie ? 'd-flex' : 'd-none'} "></i>
