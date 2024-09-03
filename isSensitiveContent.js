@@ -1,10 +1,6 @@
 const sensitiveImages = document.querySelectorAll('.content-warning-img')
 
-const previousPageUrl = document.referrer;
-const currPageUrl = window.location.href
 
-console.log('prev page:',previousPageUrl)
-console.log('curr page:',currPageUrl)
 
 if (sensitiveImages) {
     const isRemoveContentCookie = getCookie('isRemoveContentWarning');
@@ -20,7 +16,11 @@ if (sensitiveImages) {
     });
 
     sensitiveImages.forEach(image => {
+        const previousPageUrl = document.referrer;
+        const currPageUrl = window.location.href
 
+        console.log('prev page:',previousPageUrl)
+        console.log('curr page:',currPageUrl)
         const isPrevPage = previousPageUrl && previousPageUrl !== currPageUrl
         const divContainer = document.createElement('div');
         divContainer.classList.add('content-warning-container')
