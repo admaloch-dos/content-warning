@@ -52,7 +52,7 @@ if (graphicImages) {
                         <div class="view-btns">
                             <button onclick="handleShowImageOnce(event)"
                                 class="btn w-100  rounded-0 show-content-btn show-once-btn">
-                                <i class="fa fa-eye "></i> Show image once
+                                <i class="fa fa-eye "></i> <span class="show-img-span">Show</span>&nbspimage once
                             </button>
                             <button data-toggle="modal" data-target="#settingsModal"
                                 class="btn w-100  rounded-0 show-content-btn disable-content-warnings-btn update-warning-settings">
@@ -112,7 +112,17 @@ if (graphicImages) {
     })
 
     function handleShowImageOnce(event) {
+        const parentContainer = event.target.closest('.content-warning-container')
+        const image = parentContainer.querySelector('.content-warning-img')
+        if (image.classList.contains('blur-img')) {
+            parentContainer.classList.add('image-showed-once')
+        } else {
+            parentContainer.classList.remove('image-showed-once')
+
+        }
         hideAndRevealWarning(event.target)
+
+
     }
 
     function handleReturnToDiffPage() {
@@ -131,20 +141,26 @@ if (graphicImages) {
         const enableSettingsContainer = parentContainer.querySelector('.enable-content-warning-btns')
         const showSettingsIcon = parentContainer.querySelector('.show-settings-icon')
         const enableDisableSpan = document.querySelector('#enable-disable-span')
+        const graphicContentText = parentContainer.querySelector('.graphic-content-text')
+        const showImageSpan = parentContainer.querySelector('.show-img-span')
+
         if (image.classList.contains('blur-img')) {
             console.log('image contains blur')
             $(disableSettingsContainer).removeClass('d-flex').addClass('d-none')
             $(showSettingsIcon).removeClass('d-none').addClass('d-flex')
             $(parentContainer).removeClass('overflow-hidden')
             $(image).removeClass('blur-img')
-
+            showImageSpan.innerText = 'Hide '
             enableDisableSpan.innerText = 'enable'
         } else {
             $(disableSettingsContainer).addClass('d-flex').removeClass('d-none')
             $(enableSettingsContainer).addClass('d-none').removeClass('d-flex')
             $(showSettingsIcon).addClass('d-none').removeClass('d-flex')
             $(parentContainer).addClass('overflow-hidden')
+            $(graphicContentText).removeClass('d-none')
             $(image).addClass('blur-img')
+            showImageSpan.innerText = 'Show '
+
 
             enableDisableSpan.innerText = 'disable'
         }
@@ -163,7 +179,19 @@ if (graphicImages) {
             isRemoveContentCookie = false
         }
 
-        allWarningItems.forEach(item => hideAndRevealWarning(item))
+        allWarningItems.forEach(item => {
+            const image = item.querySelector('img')
+
+            if (item.classList.contains('image-showed-once')) {
+                console.log('this is true')
+                const showOnceBtn = item.querySelector('.show-once-btn')
+                showOnceBtn.click()
+            }
+            hideAndRevealWarning(item)
+
+
+
+        })
 
     }
 
@@ -174,12 +202,11 @@ if (graphicImages) {
         const disableSettingsContainer = parentContainer.querySelector('.graphic-content')
         const settingsContainer = parentContainer.querySelector('.enable-content-warning-btns')
         const graphicContentText = parentContainer.querySelector('.graphic-content-text')
-        console.log('is cookie', isRemoveContentCookie)
         if (isRemoveContentCookie) {
-            $(settingsContainer).toggleClass('d-none, d-flex')
+            $(settingsContainer).addClass('d-flex').removeClass('d-none')
             $(graphicContentText).removeClass('d-none')
         } else {
-            $(disableSettingsContainer).toggleClass('d-none, d-flex')
+            $(disableSettingsContainer).addClass('d-flex').removeClass('d-none')
             $(graphicContentText).addClass('d-none')
 
 
