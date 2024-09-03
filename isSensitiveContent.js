@@ -1,8 +1,8 @@
-const sensitiveImages = document.querySelectorAll('.content-warning-img')
+const graphicImages = document.querySelectorAll('.content-warning-img')
 
 
 
-if (sensitiveImages) {
+if (graphicImages) {
     const isRemoveContentCookie = getCookie('isRemoveContentWarning');
 
 
@@ -15,41 +15,52 @@ if (sensitiveImages) {
         });
     });
 
-    sensitiveImages.forEach(image => {
+    graphicImages.forEach(image => {
         const previousPageUrl = document.referrer;
         const currPageUrl = window.location.href
 
-        console.log('prev page:',previousPageUrl)
-        console.log('curr page:',currPageUrl)
+        console.log('prev page:', previousPageUrl)
+        console.log('curr page:', currPageUrl)
         const isPrevPage = previousPageUrl && previousPageUrl !== currPageUrl
+
+        const graphicContentText = document.createElement('div');
+        graphicContentText.classList.add('graphic-content-text')
+        graphicContentText.innerHTML = `
+        <h4 class = "text-center">
+        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+        Warning: <br>
+            This item contains graphic content. <br>
+            Viewer discretion is advised.
+        </h4>
+        `
+
         const divContainer = document.createElement('div');
         divContainer.classList.add('content-warning-container')
         image.parentNode.insertBefore(divContainer, image);
         !isRemoveContentCookie && image.classList.add('blur-img')
         image.classList.add('content-warning-image')
-        const sensitiveContentContainer = document.createElement('div')
-        sensitiveContentContainer.classList.add('sensitive-content-container')
-        sensitiveContentContainer.innerHTML = `
+        const graphicContentContainer = document.createElement('div')
+        graphicContentContainer.classList.add('graphic-content-container')
+        graphicContentContainer.innerHTML = `
         <div class="content-warning-btns ${isRemoveContentCookie ? 'd-none' : 'd-flex'}">
             <div class="return-to-prev flex-fill">
                 <button onclick="handleImgSettingsClick(event)"
                     class="btn w-100 rounded-0 show-content-btn return-page-btn">
-                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    <i class="fa fa-arrow-left return-page-arrow" aria-hidden="true"></i>
                     <p>Return to ${isPrevPage ? 'previous page' : 'home page'}</p>
                 </button>
             </div>
             <div class="view-settings flex-fill">
-                <div class="view-label ">
-                        Show Image:<i class="fa fa-eye"></i>
-                </div>
+
                 <div class="view-btns">
                     <button onclick="handleImgSettingsClick(event)"
                         class="btn w-100  rounded-0 show-content-btn show-once-btn">
-                        Once
+                        <i class="fa fa-eye "></i> Show image once
                     </button>
                     <button onclick="handleImgSettingsClick(event)"
                         class="btn w-100  rounded-0 show-content-btn show-always-btn">
-                        Always
+                        <i class="fa fa-ban" aria-hidden="true"></i>
+  Disable content warnings
                     </button>
                 </div>
             </div>
@@ -60,7 +71,7 @@ if (sensitiveImages) {
 
 
         `
-        divContainer.append(image, sensitiveContentContainer);
+        divContainer.append(image, graphicContentText, graphicContentContainer);
     })
 
     function handleImgSettingsClick(event) {
@@ -71,13 +82,14 @@ if (sensitiveImages) {
         const showSettingsIcon = parentContainer.querySelector('.show-settings-icon')
 
         if (settingsBtn.classList.contains('show-once-btn')) {
-            removeImageBlur(event.target)
+            removeImageWarning(event.target)
         } else if (settingsBtn.classList.contains('show-always-btn')) {
             const allShowImgBtns = document.querySelectorAll('.show-once-btn')
             allShowImgBtns.forEach(btn => {
                 btn.click()
             })
-            setCookie("isRemoveContentWarning", "true", 400);
+
+            // setCookie("isRemoveContentWarning", "true", 400);
         } else {
             console.log('this ran')
             const previousPageUrl = document.referrer;
@@ -88,7 +100,7 @@ if (sensitiveImages) {
         }
     }
 
-    const removeImageBlur = (settingsBtn) => {
+    const removeImageWarning = (settingsBtn) => {
 
         const parentContainer = settingsBtn.closest('.content-warning-container')
         const image = parentContainer.querySelector('.content-warning-img')
