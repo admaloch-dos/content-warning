@@ -7,8 +7,7 @@
     position: relative;
     display: inline-block;
     /* Makes the container fit the image size */
-    /* border: black solid 3px; */
-
+border-radius: 3px;
     /* Prevents overflow if needed */
     /* border: black solid 3px; */
     margin-bottom: 2rem;
@@ -225,3 +224,4 @@
     filter: invert(100%);
     transition: .15s ease-in-out all;
 }
+

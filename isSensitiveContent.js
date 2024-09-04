@@ -1,3 +1,8 @@
+//Notes:
+// Any sensitive image will be given a class of .content-warning-img on the backend
+// this script will check if any images contain that class, if so, it will create an overlay
+//
+
 const graphicImages = document.querySelectorAll('.content-warning-img')
 
 if (graphicImages) {
@@ -5,13 +10,14 @@ if (graphicImages) {
     let isRemoveContentCookie = removeContentCookie
 
     $(function () {
-        // Initialize popovers
+        // Initialize popovers w bootstrap
         $('[data-toggle="popover"]').popover({
-            trigger: 'hover', // Show popover on hover
-            html: true // Allow HTML content
+            trigger: 'hover',
+            html: true
         });
     });
 
+    // loop over
     graphicImages.forEach(image => {
         const previousPageUrl = document.referrer;
         const currPageUrl = window.location.href
@@ -121,8 +127,6 @@ if (graphicImages) {
 
         }
         hideAndRevealWarning(event.target)
-
-
     }
 
     function handleReturnToDiffPage() {
@@ -145,13 +149,14 @@ if (graphicImages) {
         const showImageSpan = parentContainer.querySelector('.show-img-span')
 
         if (image.classList.contains('blur-img')) {
-            console.log('image contains blur')
             $(disableSettingsContainer).removeClass('d-flex').addClass('d-none')
             $(showSettingsIcon).removeClass('d-none').addClass('d-flex')
             $(parentContainer).removeClass('overflow-hidden')
             $(image).removeClass('blur-img')
             showImageSpan.innerText = 'Hide '
-            enableDisableSpan.innerText = 'enable'
+            if (!parentContainer.classList.contains('image-showed-once')) {
+                enableDisableSpan.innerText = 'enable'
+            }
         } else {
             $(disableSettingsContainer).addClass('d-flex').removeClass('d-none')
             $(enableSettingsContainer).addClass('d-none').removeClass('d-flex')
@@ -160,9 +165,9 @@ if (graphicImages) {
             $(graphicContentText).removeClass('d-none')
             $(image).addClass('blur-img')
             showImageSpan.innerText = 'Show '
-
-
-            enableDisableSpan.innerText = 'disable'
+            if (!parentContainer.classList.contains('image-showed-once')) {
+                enableDisableSpan.innerText = 'disable'
+            }
         }
 
     }
@@ -170,7 +175,6 @@ if (graphicImages) {
     //modal click yes
     function updateWarningSettings(event) {
         const allWarningItems = document.querySelectorAll('.content-warning-container')
-        // console.log(isRemoveContentCookie)
         if (!isRemoveContentCookie) {
             setCookie("isRemoveContentWarning", "true", 400);
             isRemoveContentCookie = true
@@ -178,21 +182,13 @@ if (graphicImages) {
             deleteCookie('isRemoveContentWarning')
             isRemoveContentCookie = false
         }
-
         allWarningItems.forEach(item => {
-            const image = item.querySelector('img')
-
             if (item.classList.contains('image-showed-once')) {
-                console.log('this is true')
                 const showOnceBtn = item.querySelector('.show-once-btn')
                 showOnceBtn.click()
             }
             hideAndRevealWarning(item)
-
-
-
         })
-
     }
 
     //image settings btn show
