@@ -1,3 +1,5 @@
+
+
 //Notes:
 // Any sensitive image will be given a class of .content-warning-img on the backend
 // this script will check if any images contain that class, if so, it will create an overlay
@@ -6,26 +8,20 @@
 const graphicImages = document.querySelectorAll('.content-warning-img')
 
 if (graphicImages) {
-    const removeContentCookie = getCookie('isRemoveContentWarning');
-    let isRemoveContentCookie = removeContentCookie
-
+    // Initialize popovers w bootstrap
     $(function () {
-        // Initialize popovers w bootstrap
         $('[data-toggle="popover"]').popover({
             trigger: 'hover',
             html: true
         });
     });
 
-    const previousPageUrl = document.referrer; // Get the previous page URL
-    const currPageUrl = window.location.href; // Get the current page URL
-    const isPrevPage = previousPageUrl && previousPageUrl !== currPageUrl; // Check if there is a previous page and it's not the current page
+    const removeContentCookie = getCookie('isRemoveContentWarning');
+    let isRemoveContentCookie = removeContentCookie
 
-    if (isPrevPage) {
-        console.log(`Previous Page URL: ${previousPageUrl}`);
-    } else {
-        console.log("No previous page URL or it's the same as the current page.");
-    }
+    const previousPageUrl = document.referrer;
+    const currPageUrl = window.location.href
+    const isPrevPage = previousPageUrl && previousPageUrl !== currPageUrl
 
     // loop over
     graphicImages.forEach(image => {
@@ -89,8 +85,8 @@ if (graphicImages) {
         </div>
         <div class="enable-content-warning-btns d-none">
                 <button data-toggle="modal" data-target="#settingsModal"
-                class="btn w-100  rounded-0 enable-content-warning-btn update-warning-settings">
-                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                class="btn d-flex justify-content-center align-items-center w-100  rounded-0 enable-content-warning-btn update-warning-settings">
+                <i class="fa fa-check-circle mr-1" aria-hidden="true"></i>
 
                     Enable content warnings
 
@@ -109,7 +105,7 @@ if (graphicImages) {
             class="fa fa-cog show-settings-icon ${isRemoveContentCookie ? 'd-flex' : 'd-none'} ">
         </i>
         <!-- Modal -->
-        <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel" aria-hidden="true">
+        <div class="modal fade w-100" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-body text-center">
@@ -177,6 +173,7 @@ if (graphicImages) {
             if (!parentContainer.classList.contains('image-showed-once')) {
                 enableDisableSpan.innerText = 'disable'
             }
+
         }
 
     }
@@ -208,10 +205,12 @@ if (graphicImages) {
         const settingsContainer = parentContainer.querySelector('.enable-content-warning-btns')
         const graphicContentText = parentContainer.querySelector('.graphic-content-text')
         if (isRemoveContentCookie) {
-            $(settingsContainer).addClass('d-flex').removeClass('d-none')
+            // $(settingsContainer).addClass('d-flex').removeClass('d-none')
+            $(settingsContainer).toggleClass('d-flex, d-none')
             $(graphicContentText).removeClass('d-none')
         } else {
-            $(disableSettingsContainer).addClass('d-flex').removeClass('d-none')
+            // $(disableSettingsContainer).addClass('d-flex').removeClass('d-none')
+            $(disableSettingsContainer).toggleClass('d-flex, d-none')
             $(graphicContentText).addClass('d-none')
 
 
