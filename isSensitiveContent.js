@@ -17,11 +17,17 @@ if (graphicImages) {
         });
     });
 
+    const previousPageUrl = document.referrer;
+    const currPageUrl = window.location.href
+    const isPrevPage = previousPageUrl && previousPageUrl !== currPageUrl
+
+    console.log('prev url:',previousPageUrl)
+    console.log('curr url:',currPageUrl)
+    console.log('Is there a prev page?:',isPrevPage)
+
     // loop over
     graphicImages.forEach(image => {
-        const previousPageUrl = document.referrer;
-        const currPageUrl = window.location.href
-        const isPrevPage = previousPageUrl && previousPageUrl !== currPageUrl
+
         const graphicContentOverlay = document.createElement('div');
         graphicContentOverlay.classList.add('content-warning-container');
         if (!isRemoveContentCookie) {
@@ -58,7 +64,7 @@ if (graphicImages) {
                         <div class="view-btns">
                             <button onclick="handleShowImageOnce(event)"
                                 class="btn w-100  rounded-0 show-content-btn show-once-btn">
-                                <i class="fa fa-eye "></i> <span class="show-img-span">Show</span>&nbspimage once
+                                <span class="show-img-span"><i class="fa fa-eye "></i> Show image once</span>
                             </button>
                             <button data-toggle="modal" data-target="#settingsModal"
                                 class="btn w-100  rounded-0 show-content-btn disable-content-warnings-btn update-warning-settings">
@@ -82,7 +88,8 @@ if (graphicImages) {
         <div class="enable-content-warning-btns d-none">
                 <button data-toggle="modal" data-target="#settingsModal"
                 class="btn w-100  rounded-0 enable-content-warning-btn update-warning-settings">
-                    <i class="fa fa-ban" aria-hidden="true"></i>
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+
                     Enable content warnings
 
                     <span class="cookie-settings-icon" data-toggle="popover" data-placement="top" data-content="Cookies are used to remember your content warning settings">
@@ -105,9 +112,9 @@ if (graphicImages) {
                 <div class="modal-content">
                     <div class="modal-body text-center">
                         <p> This will <span id = "enable-disable-span">${isRemoveContentCookie ? 'enable' : 'disable'}</span>  content warnings for all images on the site and remember your settings for future visits. Would you like to proceed?</p>
-                        <button onclick="updateWarningSettings(event)"  type="button" class="btn custom-btn" data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>
+                        <button onclick="updateWarningSettings(event)"  type="button" class="btn custom-btn" data-dismiss="modal"><i class="fa fa-check-circle check-icon" aria-hidden="true"></i>
                         Yes</button>
-                        <button  type="button" class="btn custom-btn" data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>
+                        <button  type="button" class="btn custom-btn" data-dismiss="modal"><i class="fa fa-times-circle cross-icon" aria-hidden="true"></i>
                         No</button>
                     </div>
                 </div>
@@ -153,7 +160,7 @@ if (graphicImages) {
             $(showSettingsIcon).removeClass('d-none').addClass('d-flex')
             $(parentContainer).removeClass('overflow-hidden')
             $(image).removeClass('blur-img')
-            showImageSpan.innerText = 'Hide '
+            showImageSpan.innerHTML = '<i class="fa fa-eye-slash" aria-hidden="true"></i> Hide image once'
             if (!parentContainer.classList.contains('image-showed-once')) {
                 enableDisableSpan.innerText = 'enable'
             }
@@ -164,7 +171,7 @@ if (graphicImages) {
             $(parentContainer).addClass('overflow-hidden')
             $(graphicContentText).removeClass('d-none')
             $(image).addClass('blur-img')
-            showImageSpan.innerText = 'Show '
+            showImageSpan.innerHTML = '<i class="fa fa-eye "></i> Show image once'
             if (!parentContainer.classList.contains('image-showed-once')) {
                 enableDisableSpan.innerText = 'disable'
             }
