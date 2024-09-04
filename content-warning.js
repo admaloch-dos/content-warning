@@ -1,13 +1,13 @@
 
 
 //Notes:
-// Any sensitive image will be given a class of .content-warning-img on the backend
-// this script will check if any images contain that class, if so, it will create an overlay
-//
+// Certain img and vids will get a class of .content-warning-img on the backend
+// this script will check if any images contain that class, if so, it will create an overlay and add it
 
 const contentWarningImgs = document.querySelectorAll('.content-warning-img')
 
 if (contentWarningImgs) {
+
     // Initialize popovers w bootstrap
     $(function () {
         $('[data-toggle="popover"]').popover({
@@ -16,16 +16,15 @@ if (contentWarningImgs) {
         });
     });
 
-    const removeContentCookie = getCookie('isRemoveContentWarning');
-    let isRemoveContentCookie = removeContentCookie
+    //grab cookie if it exists
+    let isRemoveContentCookie = getCookie('isRemoveContentWarning');
 
     const previousPageUrl = document.referrer;
     const currPageUrl = window.location.href
     const isPrevPage = previousPageUrl && previousPageUrl !== currPageUrl
 
-    // loop over
+    // loop over array of images
     contentWarningImgs.forEach(image => {
-
         const contentWarningOverlay = document.createElement('div');
         contentWarningOverlay.classList.add('content-warning-container');
         if (!isRemoveContentCookie) {
@@ -38,11 +37,10 @@ if (contentWarningImgs) {
             image.style.filter = 'none';
         }
         const contentContainer = document.createElement('div');
-        contentContainer.classList.add('graphic-content-container')
         contentContainer.innerHTML = `
-        <div class="graphic-content ${isRemoveContentCookie ? 'd-none' : 'd-flex'}">
+        <div class="content-warning-main ${isRemoveContentCookie ? 'd-none' : 'd-flex'}">
 
-            <div class="graphic-content-text">
+            <div class="content-warning-text">
                 <h4 class="text-center">
                     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                     Warning: <br>
@@ -51,7 +49,7 @@ if (contentWarningImgs) {
                 </h4>
             </div>
 
-            <div class="graphic-content-btns">
+            <div class="content-warning-btns">
                 <div class="content-warning-btns d-flex">
                     <div class="return-to-prev flex-fill">
                     <button onclick="handleReturnToDiffPage()"
@@ -144,11 +142,11 @@ if (contentWarningImgs) {
     const hideAndRevealWarning = (input) => {
         const parentContainer = input.closest('.content-warning-container')
         const image = parentContainer.querySelector('.content-warning-img')
-        const disableSettingsContainer = parentContainer.querySelector('.graphic-content')
+        const disableSettingsContainer = parentContainer.querySelector('.content-warning-main')
         const enableSettingsContainer = parentContainer.querySelector('.enable-content-warning-btns')
         const showSettingsIcon = parentContainer.querySelector('.show-settings-icon')
         const enableDisableSpan = document.querySelector('#enable-disable-span')
-        const contentWarningText = parentContainer.querySelector('.graphic-content-text')
+        const contentWarningText = parentContainer.querySelector('.content-warning-text')
         const showImageSpan = parentContainer.querySelector('.show-img-span')
 
         if (image.classList.contains('blur-img')) {
@@ -201,9 +199,9 @@ if (contentWarningImgs) {
     function showImageSettings(event) {
         const showSettingsIcon = event.target;
         const parentContainer = showSettingsIcon.closest('.content-warning-container')
-        const disableSettingsContainer = parentContainer.querySelector('.graphic-content')
+        const disableSettingsContainer = parentContainer.querySelector('.content-warning-main')
         const settingsContainer = parentContainer.querySelector('.enable-content-warning-btns')
-        const contentWarningText = parentContainer.querySelector('.graphic-content-text')
+        const contentWarningText = parentContainer.querySelector('.content-warning-text')
         if (isRemoveContentCookie) {
             $(settingsContainer).toggleClass('d-flex, d-none')
             $(contentWarningText).removeClass('d-none')

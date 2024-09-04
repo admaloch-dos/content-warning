@@ -23,8 +23,7 @@
     line-height: 18px;
 }
 
-
-.graphic-content-btns,
+.content-warning-btns,
 .enable-content-warning-btns {
     position: absolute;
     bottom: 0;
@@ -39,10 +38,6 @@
 
 }
 
-.blur-img {
-    /* filter: blur(1.5rem); */
-}
-
 .content-warning-label {
     background-color: rgb(46, 35, 35);
     color: white;
@@ -51,14 +46,11 @@
     align-items: center;
 }
 
-
 .content-warning-btns {
     width: 100%;
     height: var(--btnContainerHeight);
     display: flex;
     justify-content: center;
-    /* height: 150px; */
-    /* border: white solid 3px; */
     flex-direction: column;
     z-index: 100;
 }
@@ -71,7 +63,6 @@
     text-align: center;
 }
 
-
 .return-to-prev {
     width: 100%;
 }
@@ -79,8 +70,6 @@
 .view-settings {
     width: 100%;
 }
-
-
 
 .return-to-prev button {
     display: flex;
@@ -95,7 +84,7 @@
     height: auto;
 }
 
-.graphic-content-text {
+.content-warning-text {
     position: absolute;
     top: 0%;
     left: 0%;
@@ -106,10 +95,9 @@
     align-items: center;
 }
 
-.graphic-content-text h4 {
+.content-warning-text h4 {
     color: white;
     background-color: #000000a6;
-
     border-radius: 5px;
     padding: 1rem;
     font-size: 1rem;
@@ -117,18 +105,16 @@
 }
 
 @media screen and (min-width: 450px) {
-    .graphic-content-text h4 {
+    .content-warning-text h4 {
         font-size: 1.2rem;
         line-height: 22px;
-
     }
 }
 
 @media screen and (min-width: 650px) {
-    .graphic-content-text h4 {
+    .content-warning-text h4 {
         font-size: 1.8rem;
         line-height: 30px;
-
     }
 }
 
@@ -157,19 +143,14 @@
 }
 
 .enable-content-warning-btn {
-    height: calc(var(--btnContainerHeight)/1.7) ;
-
+    height: calc(var(--btnContainerHeight)/1.7);
     background-color: #334454;
 }
-
-
 
 @media screen and (min-width: 500px) {
     .content-warning-btns {
         flex-direction: row;
     }
-
-
 
     .content-warning-btns button {
         height: calc(var(--btnContainerHeight)/2);
@@ -188,8 +169,6 @@
         width: 70%;
     }
 
-
-
     .return-to-prev {
         width: 30%;
         border-right: white solid 2px;
@@ -200,15 +179,11 @@
         flex-direction: column;
         height: var(--btnContainerHeight);
     }
-
 }
-
-
 
 .content-warning-container button {
     color: white;
     transition: .15s ease-in-out opacity;
-
 }
 
 .content-warning-container button:hover {
@@ -216,13 +191,7 @@
     opacity: .8;
 }
 
-
-
-
-
 .show-settings-icon {
-    /* color: white; */
-
     font-size: 20px;
     position: absolute;
     bottom: -1.5rem;
@@ -235,9 +204,6 @@
 .show-settings-icon:hover {
     opacity: .6;
 }
-
-
-
 
 .cookie-settings-icon {
     position: absolute;
