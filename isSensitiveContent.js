@@ -62,13 +62,14 @@ if (graphicImages) {
                         <div class="view-btns">
                             <button onclick="handleShowImageOnce(event)"
                                 class="btn w-100  rounded-0 show-content-btn show-once-btn">
-                                <span class="show-img-span"><i class="fa fa-eye "></i> Show image once</span>
+                                <span class="show-img-span"><i class="fa fa-eye "></i> Show item once</span>
                             </button>
                             <button data-toggle="modal" data-target="#settingsModal"
                                 class="btn w-100  rounded-0 show-content-btn disable-content-warnings-btn update-warning-settings">
                                 <i class="fa fa-ban" aria-hidden="true"></i>
                                 Disable content warnings
-                                <span class="cookie-settings-icon" data-toggle="popover" data-placement="top" data-content="Cookies are used to remember your content warning settings">
+                                <span onclick="handleCookieIcon(event)" class="cookie-settings-icon" data-toggle="popover" data-placement="top"
+                                data-content="Cookies are used to remember your content warning settings">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cookie"
                                         viewBox="0 0 16 16">
                                         <path
@@ -90,7 +91,8 @@ if (graphicImages) {
 
                     Enable content warnings
 
-                    <span class="cookie-settings-icon" data-toggle="popover" data-placement="top" data-content="Cookies are used to remember your content warning settings">
+                    <span onclick="handleCookieIcon(event)" class="cookie-settings-icon" data-toggle="popover" data-placement="top"
+                                    data-content="Cookies are used to remember your content warning settings">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cookie"
                             viewBox="0 0 16 16">
                             <path
@@ -109,7 +111,7 @@ if (graphicImages) {
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-body text-center">
-                        <p> This will <span id = "enable-disable-span">${isRemoveContentCookie ? 'enable' : 'disable'}</span>  content warnings for all images on the site and remember your settings for future visits. Would you like to proceed?</p>
+                        <p> This will <span id = "enable-disable-span">${isRemoveContentCookie ? 'enable' : 'disable'}</span>  content warnings for all graphic content on the site and remember your settings for future visits. Would you like to proceed?</p>
                         <button onclick="updateWarningSettings(event)"  type="button" class="btn custom-btn" data-dismiss="modal"><i class="fa fa-check-circle check-icon" aria-hidden="true"></i>
                         Yes</button>
                         <button  type="button" class="btn custom-btn" data-dismiss="modal"><i class="fa fa-times-circle cross-icon" aria-hidden="true"></i>
@@ -122,6 +124,7 @@ if (graphicImages) {
         graphicContentOverlay.append(image, graphicContentContainer);
     })
 
+    //for when user clicks to show temporarily
     function handleShowImageOnce(event) {
         const parentContainer = event.target.closest('.content-warning-container')
         const image = parentContainer.querySelector('.content-warning-img')
@@ -132,14 +135,6 @@ if (graphicImages) {
 
         }
         hideAndRevealWarning(event.target)
-    }
-
-    function handleReturnToDiffPage() {
-        const previousPageUrl = document.referrer;
-        const currPageUrl = window.location.href
-        const isPrevPage = previousPageUrl && previousPageUrl !== currPageUrl
-        const url = isPrevPage ? previousPageUrl : 'https://www.floridamemory.com/'
-        window.location.href = url;
     }
 
     //handle hiding and revealing an image content warning overlay
@@ -158,10 +153,11 @@ if (graphicImages) {
             $(showSettingsIcon).removeClass('d-none').addClass('d-flex')
             $(parentContainer).removeClass('overflow-hidden')
             $(image).removeClass('blur-img')
-            showImageSpan.innerHTML = '<i class="fa fa-eye-slash" aria-hidden="true"></i> Hide image once'
+            showImageSpan.innerHTML = '<i class="fa fa-eye-slash" aria-hidden="true"></i> Hide item once'
             if (!parentContainer.classList.contains('image-showed-once')) {
                 enableDisableSpan.innerText = 'enable'
             }
+
         } else {
             $(disableSettingsContainer).addClass('d-flex').removeClass('d-none')
             $(enableSettingsContainer).addClass('d-none').removeClass('d-flex')
@@ -169,13 +165,12 @@ if (graphicImages) {
             $(parentContainer).addClass('overflow-hidden')
             $(graphicContentText).removeClass('d-none')
             $(image).addClass('blur-img')
-            showImageSpan.innerHTML = '<i class="fa fa-eye "></i> Show image once'
+            showImageSpan.innerHTML = '<i class="fa fa-eye "></i> Show item once'
             if (!parentContainer.classList.contains('image-showed-once')) {
                 enableDisableSpan.innerText = 'disable'
             }
-
         }
-
+        resetVideos()
     }
 
     //modal click yes
@@ -205,15 +200,35 @@ if (graphicImages) {
         const settingsContainer = parentContainer.querySelector('.enable-content-warning-btns')
         const graphicContentText = parentContainer.querySelector('.graphic-content-text')
         if (isRemoveContentCookie) {
-            // $(settingsContainer).addClass('d-flex').removeClass('d-none')
             $(settingsContainer).toggleClass('d-flex, d-none')
             $(graphicContentText).removeClass('d-none')
         } else {
-            // $(disableSettingsContainer).addClass('d-flex').removeClass('d-none')
             $(disableSettingsContainer).toggleClass('d-flex, d-none')
             $(graphicContentText).addClass('d-none')
+        }
+    }
 
+    //return to prev page or home if no prev page
+    function handleReturnToDiffPage() {
+        const previousPageUrl = document.referrer;
+        const currPageUrl = window.location.href
+        const isPrevPage = previousPageUrl && previousPageUrl !== currPageUrl
+        const url = isPrevPage ? previousPageUrl : 'https://www.floridamemory.com/'
+        window.location.href = url;
+    }
 
+    function handleCookieIcon(event) {
+        event.stopPropagation();
+    }
+
+    //helper func to reset videos when item hidden
+    const resetVideos = () => {
+        const graphicVideos = document.querySelectorAll('video.content-warning-img');
+        if (graphicVideos) {
+            graphicVideos.forEach(graphicVideo => {
+                graphicVideo.pause();
+                graphicVideo.currentTime = 0;
+            })
         }
     }
 
