@@ -17,13 +17,15 @@ if (graphicImages) {
         });
     });
 
-    const previousPageUrl = document.referrer;
-    const currPageUrl = window.location.href
-    const isPrevPage = previousPageUrl && previousPageUrl !== currPageUrl
+    const previousPageUrl = document.referrer; // Get the previous page URL
+    const currPageUrl = window.location.href; // Get the current page URL
+    const isPrevPage = previousPageUrl && previousPageUrl !== currPageUrl; // Check if there is a previous page and it's not the current page
 
-    console.log('prev url:',previousPageUrl)
-    console.log('curr url:',currPageUrl)
-    console.log('Is there a prev page?:',isPrevPage)
+    if (isPrevPage) {
+        console.log(`Previous Page URL: ${previousPageUrl}`);
+    } else {
+        console.log("No previous page URL or it's the same as the current page.");
+    }
 
     // loop over
     graphicImages.forEach(image => {
