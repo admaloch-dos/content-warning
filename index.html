@@ -68,7 +68,11 @@
 
 
 
-
+<style>
+    .content-warning-img {
+        filter: blur(1.5rem)
+    }
+</style>
 
 
 
@@ -77,6 +81,8 @@
     <link rel="stylesheet" href="warning-style.css">
 
 </head>
+
+
 
 <body class="fm_content" id="FM_body">
 
@@ -1635,191 +1641,191 @@
   fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));</script>
   -->
-                                
 
 
-                                    <style>
-                                        .HighlightLinks .share_options .social_media li a {
-                                            color: initial !important;
-                                            background-color: transparent;
-                                        }
 
-                                        .share_options {
-                                            margin: 0 0 30px;
-                                            background-color: white;
-                                            padding: 20px;
-                                            position: relative;
-                                            /*box-shadow: 0 1px 3px 0 rgba(0,0,0,0.25);*/
-                                        }
+                                <style>
+                                    .HighlightLinks .share_options .social_media li a {
+                                        color: initial !important;
+                                        background-color: transparent;
+                                    }
 
+                                    .share_options {
+                                        margin: 0 0 30px;
+                                        background-color: white;
+                                        padding: 20px;
+                                        position: relative;
+                                        /*box-shadow: 0 1px 3px 0 rgba(0,0,0,0.25);*/
+                                    }
+
+                                    .share_options .social_media {
+                                        margin-bottom: 0;
+                                        display: inline-flex;
+                                    }
+
+                                    @media screen and (max-width:992px) {
                                         .share_options .social_media {
-                                            margin-bottom: 0;
-                                            display: inline-flex;
+                                            margin-bottom: 10px;
                                         }
+                                    }
 
-                                        @media screen and (max-width:992px) {
-                                            .share_options .social_media {
-                                                margin-bottom: 10px;
-                                            }
-                                        }
+                                    .share_options .social_media li a i {
+                                        font-size: 24px;
+                                    }
 
-                                        .share_options .social_media li a i {
-                                            font-size: 24px;
-                                        }
+                                    #fb_icon a {
+                                        color: #4267B2;
+                                    }
 
-                                        #fb_icon a {
-                                            color: #4267B2;
-                                        }
+                                    #twitter_icon a {
+                                        color: #00acee;
+                                    }
 
-                                        #twitter_icon a {
-                                            color: #00acee;
-                                        }
+                                    #pinterest_icon a {
+                                        color: #c8232c;
+                                    }
 
-                                        #pinterest_icon a {
-                                            color: #c8232c;
-                                        }
+                                    .CopyURL_btn {
+                                        background-color: #797979;
+                                        font-weight: bold;
+                                        text-transform: uppercase;
+                                        color: white;
+                                        letter-spacing: 2px;
+                                        font-size: 13px;
+                                        border-radius: .25rem;
+                                        border-top-right-radius: .25rem !important;
+                                        border-bottom-right-radius: .25rem !important;
+                                    }
 
-                                        .CopyURL_btn {
-                                            background-color: #797979;
-                                            font-weight: bold;
-                                            text-transform: uppercase;
-                                            color: white;
-                                            letter-spacing: 2px;
-                                            font-size: 13px;
-                                            border-radius: .25rem;
-                                            border-top-right-radius: .25rem !important;
-                                            border-bottom-right-radius: .25rem !important;
-                                        }
+                                    .download_btn,
+                                    .citation_btn {
+                                        border: 2px solid #bd5410;
+                                        color: #bd5410;
+                                        font-size: 14px;
+                                        width: 120px;
+                                        text-transform: uppercase;
+                                        text-align: center;
+                                        font-weight: 600;
+                                        letter-spacing: 1px;
+                                        transition: 0.3s;
+                                    }
+
+                                    .citation_btn {
+                                        display: none;
+                                    }
+
+                                    .download_btn:hover,
+                                    .citation_btn:hover {
+                                        color: white !important;
+                                        background-color: #bd5410;
+                                    }
+
+                                    @media screen and (max-width:575px) {
 
                                         .download_btn,
+                                        .buy_btn,
                                         .citation_btn {
-                                            border: 2px solid #bd5410;
-                                            color: #bd5410;
-                                            font-size: 14px;
-                                            width: 120px;
-                                            text-transform: uppercase;
-                                            text-align: center;
-                                            font-weight: 600;
-                                            letter-spacing: 1px;
-                                            transition: 0.3s;
+                                            margin-top: 10px;
                                         }
+                                    }
 
-                                        .citation_btn {
-                                            display: none;
-                                        }
+                                    .CopyURL {
+                                        position: relative;
+                                    }
 
-                                        .download_btn:hover,
-                                        .citation_btn:hover {
-                                            color: white !important;
-                                            background-color: #bd5410;
-                                        }
+                                    .copied {
+                                        opacity: 0;
+                                        display: none;
+                                        transition: 0.5s;
+                                    }
 
-                                        @media screen and (max-width:575px) {
+                                    .copied.active {
+                                        opacity: 1;
+                                        display: block;
+                                    }
 
-                                            .download_btn,
-                                            .buy_btn,
-                                            .citation_btn {
-                                                margin-top: 10px;
-                                            }
-                                        }
+                                    .google_tooltip {
+                                        position: relative;
+                                        display: inline-block;
+                                    }
 
-                                        .CopyURL {
-                                            position: relative;
-                                        }
+                                    .google_tooltip .tooltiptext {
+                                        visibility: hidden;
+                                        width: max-content;
+                                        background-color: #555;
+                                        color: #fff;
+                                        text-align: center;
+                                        border-radius: 6px;
+                                        padding: 5px;
+                                        font-size: 13px;
+                                        position: absolute;
+                                        z-index: 1;
+                                        bottom: 125%;
+                                        left: -45%;
+                                        margin-left: -60px;
+                                        opacity: 0;
+                                        transition: opacity 0.3s;
+                                    }
 
-                                        .copied {
-                                            opacity: 0;
-                                            display: none;
-                                            transition: 0.5s;
-                                        }
+                                    .google_tooltip .tooltiptext::after {
+                                        content: "";
+                                        position: absolute;
+                                        top: 100%;
+                                        left: 50%;
+                                        margin-left: -5px;
+                                        border-width: 5px;
+                                        border-style: solid;
+                                        border-color: #555 transparent transparent transparent;
+                                    }
 
-                                        .copied.active {
-                                            opacity: 1;
-                                            display: block;
-                                        }
+                                    .google_tooltip:hover .tooltiptext {
+                                        visibility: visible;
+                                        opacity: 1;
+                                    }
 
-                                        .google_tooltip {
-                                            position: relative;
-                                            display: inline-block;
-                                        }
+                                    #inverted_googleclassroom_icon {
+                                        display: none;
+                                    }
 
-                                        .google_tooltip .tooltiptext {
-                                            visibility: hidden;
-                                            width: max-content;
-                                            background-color: #555;
-                                            color: #fff;
-                                            text-align: center;
-                                            border-radius: 6px;
-                                            padding: 5px;
-                                            font-size: 13px;
-                                            position: absolute;
-                                            z-index: 1;
-                                            bottom: 125%;
-                                            left: -45%;
-                                            margin-left: -60px;
-                                            opacity: 0;
-                                            transition: opacity 0.3s;
-                                        }
+                                    .desaturated #inverted_googleclassroom_icon {
+                                        display: inline-block;
+                                    }
 
-                                        .google_tooltip .tooltiptext::after {
-                                            content: "";
-                                            position: absolute;
-                                            top: 100%;
-                                            left: 50%;
-                                            margin-left: -5px;
-                                            border-width: 5px;
-                                            border-style: solid;
-                                            border-color: #555 transparent transparent transparent;
-                                        }
-
-                                        .google_tooltip:hover .tooltiptext {
-                                            visibility: visible;
-                                            opacity: 1;
-                                        }
-
-                                        #inverted_googleclassroom_icon {
-                                            display: none;
-                                        }
-
-                                        .desaturated #inverted_googleclassroom_icon {
-                                            display: inline-block;
-                                        }
-
-                                        .desaturated #non_inverted_googleclassroom_icon {
-                                            display: none;
-                                        }
-                                    </style>
+                                    .desaturated #non_inverted_googleclassroom_icon {
+                                        display: none;
+                                    }
+                                </style>
 
 
 
-                                    <div class="row">
-                                        <div
-                                            class="col-12 col-sm-4 col-md-3 col-lg-3 col-xl-3 align-self-center text-lg-center">
-                                            <ul class="list-inline social_media">
+                                <div class="row">
+                                    <div
+                                        class="col-12 col-sm-4 col-md-3 col-lg-3 col-xl-3 align-self-center text-lg-center">
+                                        <ul class="list-inline social_media">
 
-                                                <li class="list-inline-item" id="email_icon">
-                                                    <a class="email"
-                                                        href="mailto:?subject=A Florida man-eater.&amp;body=Check out Florida Memory's A Florida man-eater. http://www.floridamemory.com/items/show/157588"
-                                                        title="Send via email"><i class="fa fa-envelope fa-fw"></i></a>
-                                                </li>
+                                            <li class="list-inline-item" id="email_icon">
+                                                <a class="email"
+                                                    href="mailto:?subject=A Florida man-eater.&amp;body=Check out Florida Memory's A Florida man-eater. http://www.floridamemory.com/items/show/157588"
+                                                    title="Send via email"><i class="fa fa-envelope fa-fw"></i></a>
+                                            </li>
 
-                                                <li class="list-inline-item" id="fb_icon">
-                                                    <a target="_blank"
-                                                        href="https://www.facebook.com/sharer/sharer.php?u=http://www.floridamemory.com/items/show/157588"
-                                                        title="Share on Facebook" class="facebook"><i
-                                                            class="fa fa-facebook fa-fw" aria-hidden="true"></i></a>
-                                                </li>
+                                            <li class="list-inline-item" id="fb_icon">
+                                                <a target="_blank"
+                                                    href="https://www.facebook.com/sharer/sharer.php?u=http://www.floridamemory.com/items/show/157588"
+                                                    title="Share on Facebook" class="facebook"><i
+                                                        class="fa fa-facebook fa-fw" aria-hidden="true"></i></a>
+                                            </li>
 
-                                                <li class="list-inline-item" id="twitter_icon">
-                                                    <a class="twitter twitter-share-button" target="_blank"
-                                                        href="https://twitter.com/intent/tweet?url=http://www.floridamemory.com/items/show/157588"
-                                                        title="Share on Twitter"><i class="fa fa-twitter fa-fw"
-                                                            aria-hidden="true"></i></a>
-                                                </li>
+                                            <li class="list-inline-item" id="twitter_icon">
+                                                <a class="twitter twitter-share-button" target="_blank"
+                                                    href="https://twitter.com/intent/tweet?url=http://www.floridamemory.com/items/show/157588"
+                                                    title="Share on Twitter"><i class="fa fa-twitter fa-fw"
+                                                        aria-hidden="true"></i></a>
+                                            </li>
 
 
 
-                                                <!--
+                                            <!--
                   <li class="list-inline-item google_tooltip" id="non_inverted_googleclassroom_icon">
                   <span class="tooltiptext">Share to Google Classroom</span>
           <abbr title="Share to Classroom"><g:sharetoclassroom url="" size="26"></g:sharetoclassroom></abbr>
@@ -1830,73 +1836,73 @@
           <abbr title="Share to Classroom"><g:sharetoclassroom url="" size="26" theme="dark"></g:sharetoclassroom></abbr>
                   </li>
                    -->
-                                            </ul>
-                                        </div><!-- col-7 col-md-6 col-lg-5 col-xl-3 align-self-center text-lg-center -->
+                                        </ul>
+                                    </div><!-- col-7 col-md-6 col-lg-5 col-xl-3 align-self-center text-lg-center -->
 
 
 
 
-                                        <div class="col-12 col-sm-4 col-md-4 col-lg-2 text-center">
+                                    <div class="col-12 col-sm-4 col-md-4 col-lg-2 text-center">
 
 
 
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <button class="btn CopyURL_btn" type="button" id="button-CopyUrl"
-                                                        data-clipboard-target="#URL_TO_COPY">Copy URL</button>
-                                                </div>
-                                                <input type="text" readonly="" class="form-control CopyURL"
-                                                    value="http://www.floridamemory.com/items/show/157588"
-                                                    aria-label="Copy URL" aria-describedby="basic-addon2"
-                                                    id="URL_TO_COPY" style="padding:0; width:0; opacity:0;">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <button class="btn CopyURL_btn" type="button" id="button-CopyUrl"
+                                                    data-clipboard-target="#URL_TO_COPY">Copy URL</button>
                                             </div>
+                                            <input type="text" readonly="" class="form-control CopyURL"
+                                                value="http://www.floridamemory.com/items/show/157588"
+                                                aria-label="Copy URL" aria-describedby="basic-addon2" id="URL_TO_COPY"
+                                                style="padding:0; width:0; opacity:0;">
+                                        </div>
 
-                                        </div><!-- col-12 col-lg-4 -->
-
-
-
-
-
-
-
+                                    </div><!-- col-12 col-lg-4 -->
 
 
 
 
 
 
-                                        <script>
-                                            //CLIPBOARD JS
-                                            //https://jsfiddle.net/whsr2paf/1/
-                                            $(function () {
-                                                var $btnCopy = $('.CopyURL_btn');
 
-                                                $btnCopy.on('click', function () {
-                                                    var clipboard = new Clipboard('.CopyURL_btn');
 
-                                                    clipboard.on('success', function (e) {
-                                                        $btnCopy.text('Copied');
 
-                                                        setTimeout(function () {
-                                                            $btnCopy.text('Copy URL');
-                                                        }, 3000);
-                                                    });
+
+
+
+
+                                    <script>
+                                        //CLIPBOARD JS
+                                        //https://jsfiddle.net/whsr2paf/1/
+                                        $(function () {
+                                            var $btnCopy = $('.CopyURL_btn');
+
+                                            $btnCopy.on('click', function () {
+                                                var clipboard = new Clipboard('.CopyURL_btn');
+
+                                                clipboard.on('success', function (e) {
+                                                    $btnCopy.text('Copied');
+
+                                                    setTimeout(function () {
+                                                        $btnCopy.text('Copy URL');
+                                                    }, 3000);
                                                 });
                                             });
-                                        </script>
+                                        });
+                                    </script>
 
-                                        <div class="col-12 col-md-4 col-lg-3 share_options2">
-                                            <a class="btn download_btn"
-                                                href="https://www.floridamemory.com/fpc/postcard/pc0050e.jpg"
-                                                role="button" download="">Download</a>
+                                    <div class="col-12 col-md-4 col-lg-3 share_options2">
+                                        <a class="btn download_btn"
+                                            href="https://www.floridamemory.com/fpc/postcard/pc0050e.jpg" role="button"
+                                            download="">Download</a>
 
-                                            <!--<a class="btn citation_btn" href="#cite" role="button">Citation</a>-->
-                                        </div><!-- col-12 col-lg-4 -->
-                                        <div class="col-12 col-lg-3 mt-3 mt-lg-0"></div>
-                                        <div class="col-12 mt-3 ml-5"><a class="hide_FloatImg"
-                                                title="Hide floating thumbnail"><i class="fa fa-times"
-                                                    aria-hidden="true"></i></a></div>
-                                    </div><!-- row -->
+                                        <!--<a class="btn citation_btn" href="#cite" role="button">Citation</a>-->
+                                    </div><!-- col-12 col-lg-4 -->
+                                    <div class="col-12 col-lg-3 mt-3 mt-lg-0"></div>
+                                    <div class="col-12 mt-3 ml-5"><a class="hide_FloatImg"
+                                            title="Hide floating thumbnail"><i class="fa fa-times"
+                                                aria-hidden="true"></i></a></div>
+                                </div><!-- row -->
                             </div><!-- share_options -->
 
                         </div><!-- item -->

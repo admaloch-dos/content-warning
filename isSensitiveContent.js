@@ -32,7 +32,11 @@ if (graphicImages) {
             graphicContentOverlay.classList.add('overflow-hidden');
         }
         image.parentNode.insertBefore(graphicContentOverlay, image);
-        !isRemoveContentCookie && image.classList.add('blur-img')
+        if(!isRemoveContentCookie) {
+            image.classList.add('blur-img')
+        } else {
+            image.style.filter = 'none';
+        }
         image.classList.add('content-warning-image')
         const graphicContentContainer = document.createElement('div');
         graphicContentContainer.classList.add('graphic-content-container')
@@ -152,6 +156,7 @@ if (graphicImages) {
             $(disableSettingsContainer).removeClass('d-flex').addClass('d-none')
             $(showSettingsIcon).removeClass('d-none').addClass('d-flex')
             $(parentContainer).removeClass('overflow-hidden')
+            image.style.filter = 'none';
             $(image).removeClass('blur-img')
             showImageSpan.innerHTML = '<i class="fa fa-eye-slash" aria-hidden="true"></i> Hide item once'
             if (!parentContainer.classList.contains('image-showed-once')) {
@@ -164,6 +169,7 @@ if (graphicImages) {
             $(showSettingsIcon).addClass('d-none').removeClass('d-flex')
             $(parentContainer).addClass('overflow-hidden')
             $(graphicContentText).removeClass('d-none')
+            image.style.filter = 'blur(1.5rem)';
             $(image).addClass('blur-img')
             showImageSpan.innerHTML = '<i class="fa fa-eye "></i> Show item once'
             if (!parentContainer.classList.contains('image-showed-once')) {
