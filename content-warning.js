@@ -5,9 +5,9 @@
 // this script will check if any images contain that class, if so, it will create an overlay
 //
 
-const graphicImages = document.querySelectorAll('.content-warning-img')
+const contentWarningImgs = document.querySelectorAll('.content-warning-img')
 
-if (graphicImages) {
+if (contentWarningImgs) {
     // Initialize popovers w bootstrap
     $(function () {
         $('[data-toggle="popover"]').popover({
@@ -24,23 +24,22 @@ if (graphicImages) {
     const isPrevPage = previousPageUrl && previousPageUrl !== currPageUrl
 
     // loop over
-    graphicImages.forEach(image => {
+    contentWarningImgs.forEach(image => {
 
-        const graphicContentOverlay = document.createElement('div');
-        graphicContentOverlay.classList.add('content-warning-container');
+        const contentWarningOverlay = document.createElement('div');
+        contentWarningOverlay.classList.add('content-warning-container');
         if (!isRemoveContentCookie) {
-            graphicContentOverlay.classList.add('overflow-hidden');
+            contentWarningOverlay.classList.add('overflow-hidden');
         }
-        image.parentNode.insertBefore(graphicContentOverlay, image);
-        if(!isRemoveContentCookie) {
+        image.parentNode.insertBefore(contentWarningOverlay, image);
+        if (!isRemoveContentCookie) {
             image.classList.add('blur-img')
         } else {
             image.style.filter = 'none';
         }
-        image.classList.add('content-warning-image')
-        const graphicContentContainer = document.createElement('div');
-        graphicContentContainer.classList.add('graphic-content-container')
-        graphicContentContainer.innerHTML = `
+        const contentContainer = document.createElement('div');
+        contentContainer.classList.add('graphic-content-container')
+        contentContainer.innerHTML = `
         <div class="graphic-content ${isRemoveContentCookie ? 'd-none' : 'd-flex'}">
 
             <div class="graphic-content-text">
@@ -125,7 +124,7 @@ if (graphicImages) {
             </div>
         </div>
         `
-        graphicContentOverlay.append(image, graphicContentContainer);
+        contentWarningOverlay.append(image, contentContainer);
     })
 
     //for when user clicks to show temporarily
@@ -149,7 +148,7 @@ if (graphicImages) {
         const enableSettingsContainer = parentContainer.querySelector('.enable-content-warning-btns')
         const showSettingsIcon = parentContainer.querySelector('.show-settings-icon')
         const enableDisableSpan = document.querySelector('#enable-disable-span')
-        const graphicContentText = parentContainer.querySelector('.graphic-content-text')
+        const contentWarningText = parentContainer.querySelector('.graphic-content-text')
         const showImageSpan = parentContainer.querySelector('.show-img-span')
 
         if (image.classList.contains('blur-img')) {
@@ -168,7 +167,7 @@ if (graphicImages) {
             $(enableSettingsContainer).addClass('d-none').removeClass('d-flex')
             $(showSettingsIcon).addClass('d-none').removeClass('d-flex')
             $(parentContainer).addClass('overflow-hidden')
-            $(graphicContentText).removeClass('d-none')
+            $(contentWarningText).removeClass('d-none')
             image.style.filter = 'blur(1.5rem)';
             $(image).addClass('blur-img')
             showImageSpan.innerHTML = '<i class="fa fa-eye "></i> Show item once'
@@ -204,13 +203,13 @@ if (graphicImages) {
         const parentContainer = showSettingsIcon.closest('.content-warning-container')
         const disableSettingsContainer = parentContainer.querySelector('.graphic-content')
         const settingsContainer = parentContainer.querySelector('.enable-content-warning-btns')
-        const graphicContentText = parentContainer.querySelector('.graphic-content-text')
+        const contentWarningText = parentContainer.querySelector('.graphic-content-text')
         if (isRemoveContentCookie) {
             $(settingsContainer).toggleClass('d-flex, d-none')
-            $(graphicContentText).removeClass('d-none')
+            $(contentWarningText).removeClass('d-none')
         } else {
             $(disableSettingsContainer).toggleClass('d-flex, d-none')
-            $(graphicContentText).addClass('d-none')
+            $(contentWarningText).addClass('d-none')
         }
     }
 
@@ -229,11 +228,11 @@ if (graphicImages) {
 
     //helper func to reset videos when item hidden
     const resetVideos = () => {
-        const graphicVideos = document.querySelectorAll('video.content-warning-img');
-        if (graphicVideos) {
-            graphicVideos.forEach(graphicVideo => {
-                graphicVideo.pause();
-                graphicVideo.currentTime = 0;
+        const contentWarningVids = document.querySelectorAll('video.content-warning-img');
+        if (contentWarningVids) {
+            contentWarningVids.forEach(video => {
+                video.pause();
+                video.currentTime = 0;
             })
         }
     }

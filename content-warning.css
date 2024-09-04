@@ -8,7 +8,9 @@
     }
 }
 
-
+.content-warning-img {
+    filter: blur(1.5rem)
+}
 
 .content-warning-container {
     position: relative;
