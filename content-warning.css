@@ -8,10 +8,6 @@
     }
 }
 
-.content-warning-img {
-    filter: blur(1.5rem)
-}
-
 .content-warning-container {
     position: relative;
     display: inline-block;
@@ -23,8 +19,8 @@
     line-height: 18px;
 }
 
-.content-warning-btns,
-.enable-content-warning-btns {
+.disable-warning-btns,
+.enable-warning-btns {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -46,7 +42,7 @@
     align-items: center;
 }
 
-.content-warning-btns {
+.disable-warning-btns {
     width: 100%;
     height: var(--btnContainerHeight);
     display: flex;
@@ -55,7 +51,7 @@
     z-index: 100;
 }
 
-.content-warning-btns button {
+.disable-warning-btns button {
     height: calc(var(--btnContainerHeight)/3);
     display: flex;
     align-items: center;
@@ -67,7 +63,7 @@
     width: 100%;
 }
 
-.view-settings {
+.view-item-settings {
     width: 100%;
 }
 
@@ -90,31 +86,65 @@
     left: 0%;
     height: calc(100% - var(--btnContainerHeight));
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
 }
 
-.content-warning-text h4 {
+.content-warning-text-items {
+
+    width: 100%;
+    max-width: 450px;
+
+    text-align: center;
     color: white;
     background-color: #000000a6;
-    border-radius: 5px;
     padding: 1rem;
+
+}
+
+.content-warning-text h5 {
     font-size: 1rem;
+    margin: 0;
     line-height: 12px;
 }
 
+.content-warning-text p {
+    font-size: .5rem;
+    line-height: 8px;
+}
+
+.content-warning-text a {
+    color: #758CFF;
+    text-decoration: underline;
+}
+.content-warning-text a:hover {
+    color: #969801!important;
+}
+
 @media screen and (min-width: 450px) {
-    .content-warning-text h4 {
-        font-size: 1.2rem;
-        line-height: 22px;
+    .content-warning-text h5 {
+        font-size: 1.3rem;
+        margin: 0 0 .2rem 0;
+        line-height: 14px;
+    }
+
+    .content-warning-text p {
+        font-size: .7rem;
+        line-height: 12px;
     }
 }
 
 @media screen and (min-width: 650px) {
-    .content-warning-text h4 {
-        font-size: 1.8rem;
-        line-height: 30px;
+    .content-warning-text h5 {
+        font-size: 2rem;
+    }
+
+    .content-warning-text p {
+        font-size: 1rem;
+        line-height: 17px;
+    }
+
+    .content-warning-text-items {
+        border-radius: 5px;
     }
 }
 
@@ -148,11 +178,11 @@
 }
 
 @media screen and (min-width: 500px) {
-    .content-warning-btns {
+    .disable-warning-btns {
         flex-direction: row;
     }
 
-    .content-warning-btns button {
+    .disable-warning-btns button {
         height: calc(var(--btnContainerHeight)/2);
 
     }
@@ -165,7 +195,7 @@
         margin: .2rem 0;
     }
 
-    .view-settings {
+    .view-item-settings {
         width: 70%;
     }
 
